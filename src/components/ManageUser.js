@@ -74,6 +74,7 @@ const ManageUser = () => {
   useEffect(() => {
     fetchData();
   }, [partner_id, manage]);
+
   //예약 확정 버튼
   const handleConfirmButton = async (v) => {
     const booking_id = v.BOOKID;
@@ -147,7 +148,9 @@ const ManageUser = () => {
 
                 <div className={styles.SubscrbingCustInfoBtn}>
                   <div>
-                    <span>{v.CURRENT_COUNT}</span>
+                    <span>
+                      {v.CURRENT_COUNT < v.FCOUNT ? v.CURRENT_COUNT : 10}
+                    </span>
                     <span style={{ margin: "0 1rem 0 1.3rem" }}>/</span>
                     <span>{v.FCOUNT}</span>
                   </div>
@@ -177,6 +180,7 @@ const ManageUser = () => {
                       setCheck(checkcopy);
 
                       handleCheckButton(v.RID);
+                      fetchData();
                     }}
                     style={
                       check[index]
